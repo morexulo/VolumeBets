@@ -220,46 +220,6 @@ st.write(
     f"for ROI and win-rate to avoid misleading stats on tiny samples."
 )
 
-
-# --------------------------------------------------------------------
-# Sidebar – data loading
-# --------------------------------------------------------------------
-st.sidebar.header("1. Load data")
-
-uploaded_file = st.sidebar.file_uploader(
-    "Upload betting CSV file",
-    type=["csv"],
-    help="File like 'All Spots Bets 2025', separated by ';'.",
-)
-
-example_path = os.path.join(ROOT_DIR, "data", "allsportsbets(2025).csv")
-use_example = False
-if os.path.exists(example_path):
-    use_example = st.sidebar.checkbox(
-        "Use example CSV from data/ folder",
-        value=uploaded_file is None,
-        help="Use the local file if you don't want to upload it manually.",
-    )
-
-df: Optional[pd.DataFrame] = None
-
-if uploaded_file is not None:
-    st.success("CSV uploaded successfully.")
-    df = load_bets_csv(uploaded_file)
-elif use_example and os.path.exists(example_path):
-    st.info("Using example CSV from data/ folder.")
-    df = load_bets_csv(example_path)
-else:
-    st.warning("Upload a CSV or enable the example file option to continue.")
-    st.stop()
-
-if df is None or df.empty:
-    st.error("The loaded DataFrame is empty. Please check the CSV.")
-    st.stop()
-
-df = normalize_date_column(df)
-
-
 # --------------------------------------------------------------------
 # 1) ROI by Bet Type (dollars)
 # --------------------------------------------------------------------
