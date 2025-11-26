@@ -208,12 +208,12 @@ def compute_sport_stats(df: pd.DataFrame) -> pd.DataFrame:
 # Page configuration
 # --------------------------------------------------------------------
 st.set_page_config(
-    page_title="Tipster Analytics – Dashboard",
+    page_title="VolumeBets – Dashboard",
     page_icon="💵",
     layout="wide",
 )
 
-st.title("Tipster Analytics – Real Money Performance Dashboard")
+st.title("VolumeBets – Real Money Performance Dashboard")
 st.write(
     f"All metrics here are calculated in **real dollars** based on Stake and Winnings. "
     f"Only bet types and sports with at least **{MIN_BETS} bets** are included "
